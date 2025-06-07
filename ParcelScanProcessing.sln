@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParcelScanProcessing.ScanEventApi", "ParcelScanProcessing.ScanEventApi\ParcelScanProcessing.ScanEventApi.csproj", "{7DA3BBC7-CBD0-460F-999D-E6C3D75096E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParcelScanProcessing.ScanWorker", "ParcelScanProcessing.ScanWorker\ParcelScanProcessing.ScanWorker.csproj", "{7C2B99C5-2624-418B-8218-5D36FC26C1EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParcelScanProcessing.DeliveryNotifierWorker", "ParcelScanProcessing.DeliveryNotifierWorker\ParcelScanProcessing.DeliveryNotifierWorker.csproj", "{CF2068C9-FE34-4CAF-9B39-D3CD6405CB11}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7DA3BBC7-CBD0-460F-999D-E6C3D75096E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DA3BBC7-CBD0-460F-999D-E6C3D75096E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DA3BBC7-CBD0-460F-999D-E6C3D75096E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DA3BBC7-CBD0-460F-999D-E6C3D75096E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C2B99C5-2624-418B-8218-5D36FC26C1EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C2B99C5-2624-418B-8218-5D36FC26C1EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C2B99C5-2624-418B-8218-5D36FC26C1EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C2B99C5-2624-418B-8218-5D36FC26C1EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF2068C9-FE34-4CAF-9B39-D3CD6405CB11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF2068C9-FE34-4CAF-9B39-D3CD6405CB11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF2068C9-FE34-4CAF-9B39-D3CD6405CB11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF2068C9-FE34-4CAF-9B39-D3CD6405CB11}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
