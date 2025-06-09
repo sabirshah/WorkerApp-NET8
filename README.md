@@ -1,10 +1,8 @@
 # Parcel Scan Event Processing Solution (.NET 8)
 
-This solution simulates a simplified event-driven system for tracking parcel scan events. It consists of **three projects**, each serving a clear responsibility:
+This solution demonstrates a simple **event-driven processing system** for parcel scan data using modern .NET 8 features, `Refit`, background services, and SQLite. It showcases clean architecture principles, logging with Serilog, and a producer-consumer pattern.
 
----
-
-## 📦 Projects Overview
+## Projects Overview
 
 ### 1. **ScanEventAPI**
 
@@ -12,8 +10,6 @@ This solution simulates a simplified event-driven system for tracking parcel sca
 - Endpoint: `GET /api/scan-events?eventId={lastEventId}&limit={batchSize}`
 - Returns a list of scan events (e.g., `PICKUP`, `DELIVERY`, `STATUS`) starting from a specific event ID.
 - Useful for simulating real-time scan activity in an event source system.
-
----
 
 ### 2. **ScanWorkerAPI**
 
@@ -23,17 +19,12 @@ This solution simulates a simplified event-driven system for tracking parcel sca
   - Processes each event using a **BlockingCollection** (producer-consumer pattern).
   - Publishes each processed event (currently logs to console).
 
-#### 🔄 Refit vs HttpClient
+### 2. **DeliveryNotifierWorker** ( Impelementaiton still pending)
 
-| Feature         | Refit                                      | HttpClient               |
-|----------------|---------------------------------------------|--------------------------|
-| Simplicity      | ✅ Declarative, interface-driven              | ❌ Manual request setup  |
-| Code Reuse      | ✅ Cleaner service abstractions              | ❌ Verbose boilerplate   |
-| Maintainability | ✅ Easier to refactor and test              | ❌ Harder to mock/test   |
+- The idea is to publish the events from ScanWorker API over Rabbit MQ and can be consumed in DeliveryNotifierWorker
 
+#### Refit Libarary 
 Refit enables concise and type-safe HTTP clients via interfaces, reducing boilerplate and improving maintainability.
-
----
 
 ### 3. **Data Persistence**
 
@@ -43,34 +34,27 @@ Refit enables concise and type-safe HTTP clients via interfaces, reducing boiler
   - `LastProcessedEvent`: to persist the last consumed `EventId`, ensuring resume support after restart.
   - `PlateInformation`: representing contextual data linked with scan events, saved **before publishing**.
 
----
+## Architecture Highlights
 
-## ⚙️ Architecture Highlights
-
-### ✅ BlockingCollection with Producer-Consumer Pattern
+### BlockingCollection with Producer-Consumer Pattern
 
 - **Producer**: `PollScanEventsAsync()` continuously polls `ScanEventAPI` and adds events to the queue.
 - **Consumer**: `ConsumeAndProcessEventsAsync()` dequeues and processes each event, ensuring separation of concerns and backpressure handling.
 
----
-
-### ✅ Logging
+### Logging
 
 - Integrated with **Serilog**:
   - Logs to **console** and to **rolling files** (`logs/log-<date>.txt`)
   - Configurable via `loggersettings.json`.
 
----
-
-### ✅ Event Publishing
+### Event Publishing
 
 - Each event is processed and then passed to a **publisher** component.
 - Currently implemented as a **console-based publisher** (`ConsolePublisher`) for demo purposes.
 - Easily extensible for Kafka, RabbitMQ, Azure Service Bus, etc.
 
----
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - [.NET 8 SDK](https://dotnet.microsoft.com/download)
@@ -83,5 +67,3 @@ Refit enables concise and type-safe HTTP clients via interfaces, reducing boiler
 3. View logs in:
    - Console output
    - Log files in `/logs` folder
-
-SQLite DB will be automatically created at:
