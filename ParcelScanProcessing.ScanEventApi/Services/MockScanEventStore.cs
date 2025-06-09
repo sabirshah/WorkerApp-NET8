@@ -12,12 +12,12 @@ namespace ParcelScanProcessing.ScanEventApi.Services
             var random = new Random();
             var types = new[] { "PICKUP", "STATUS", "DELIVERY" };
 
-            for (int i = 1; i <= 200; i++)
+            for (int i = 1; i <= 2000; i++)
             {
                 _scanEvents.Add(new ScanEvent
                 {
                     EventId = i,
-                    ParcelId = random.Next(1000, 1005),
+                    ParcelId = random.Next(10000, 1300000),
                     Type = types[random.Next(types.Length)],
                     CreatedDateTimeUtc = DateTime.UtcNow.AddMinutes(-i),
                     StatusCode = "",
