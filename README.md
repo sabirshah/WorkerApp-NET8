@@ -1,8 +1,11 @@
 # Parcel Scan Event Processing Solution (.NET 8)
 
-This solution demonstrates a simple **event-driven processing system** for parcel scan data using modern .NET 8 features, `Refit`, background services, and SQLite. It showcases clean architecture principles, logging with Serilog, and a producer-consumer pattern.
+This solution demonstrates a simple **event-driven processing system** for parcel scan data using modern .NET 8 features, `Refit Library`, background services, and SQLite. It showcases clean architecture principles, logging with Serilog, and a producer-consumer pattern.
 
 ## Projects Overview
+
+![Screenshot 2025-06-10 102542](https://github.com/user-attachments/assets/e39e5b73-fb00-4858-b5a0-3af2aba8bfc9)
+
 
 ### 1. **ScanEventAPI**
 
@@ -18,6 +21,7 @@ This solution demonstrates a simple **event-driven processing system** for parce
   - Uses **Refit** to simplify the API interaction.
   - Processes each event using a **BlockingCollection** (producer-consumer pattern).
   - Publishes each processed event (currently logs to console).
+  - The worker uses the Strategy Pattern to handle different types of scan events such as PICKUP, DELIVERY, and others
 
 ### 2. **DeliveryNotifierWorker** ( Impelementaiton still pending)
 
@@ -67,3 +71,11 @@ Refit enables concise and type-safe HTTP clients via interfaces, reducing boiler
 3. View logs in:
    - Console output
    - Log files in `/logs` folder
+
+### Futute Improvements
+1. Move LastProcessedEvent storage from SQLite to Redis for performance and scalability.
+2. Implement event publishing using RabbitMQ, Azure Service Bus, or Kafka.
+3. Replace SQLite with SQL Server and add EF Core Migrations for production-grade persistence.
+4. Implement DeliveryNotifierWorker for end-to-end event-driven architecture.
+
+![Screenshot 2025-06-10 102559](https://github.com/user-attachments/assets/dacd98ce-299f-4f77-b7f3-43397c5dd8d2)
