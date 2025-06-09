@@ -49,6 +49,12 @@ builder.ConfigureServices((hostContext, services) =>
 
 var app = builder.Build();
 
+// Ensure folders exist
+var dataPath = Path.Combine(AppContext.BaseDirectory, "App_Data");
+var logsPath = Path.Combine(AppContext.BaseDirectory, "logs");
+Directory.CreateDirectory(dataPath);
+Directory.CreateDirectory(logsPath);
+
 // Ensure the database is created and seeded
 using (var scope = app.Services.CreateScope())
 {
